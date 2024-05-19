@@ -5,5 +5,6 @@ export function useColorMode() {
   return useContext(HooksContext) as {
     colorMode: string;
     toggleColorMode: () => {};
+    setColorMode: (mode: ('light' | 'dark') & string) => {};
   };
 }

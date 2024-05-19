@@ -57,6 +57,7 @@ const NativeBaseProvider = ({
       value={{
         colorMode: colorModeNEW,
         toggleColorMode: toggleColorMode,
+        setColorMode: setColorMode,
         config: config?.dependencies ? config.dependencies : {},
         disableContrastText: disableContrastText,
       }}
