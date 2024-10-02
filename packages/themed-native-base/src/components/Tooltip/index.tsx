@@ -1,6 +1,7 @@
 import React, { cloneElement, forwardRef } from 'react';
 import { Root, Content, Text } from './styled-components';
 import { createTooltip } from '@gluestack-ui/tooltip';
+import { usePropResolution } from '../../hooks/usePropResolution';
 import { GenericComponentType } from '../../types';
 import { AnimatePresence } from '@gluestack-style/animation-resolver';
 
@@ -13,15 +14,16 @@ const AccessibleTooltip = createTooltip({
 
 const TooltipTemp = forwardRef(
   ({ children, label, ...props }: any, ref?: any) => {
+    const resolvedPropForGluestack = usePropResolution(props);
     return (
       <AccessibleTooltip
-        {...props}
+        {...resolvedPropForGluestack}
         ref={ref}
         trigger={(triggerProps: any) => {
           return cloneElement(children, { ...triggerProps });
         }}
       >
-        <AccessibleTooltip.Content>
+        <AccessibleTooltip.Content {...resolvedPropForGluestack}>
           <AccessibleTooltip.Text>{label}</AccessibleTooltip.Text>
         </AccessibleTooltip.Content>
       </AccessibleTooltip>
